@@ -1,0 +1,658 @@
+/* Mobile-First Responsive Portfolio with Professional Animations */
+
+/* ===== CSS Variables ===== */
+:root{
+  --bg:#ffffff; 
+  --fg:#0b0b0b; 
+  --muted:#666; 
+  --accent:#2b8cff;
+  --header-bg:rgba(255,255,255,0.95);
+  --border:rgba(0,0,0,0.08);
+  --card-bg:#fafafa;
+  --shadow:0 2px 8px rgba(0,0,0,0.04);
+  --shadow-hover:0 8px 24px rgba(0,0,0,0.12);
+}
+:root[data-theme='dark']{
+  --bg:#0b0b0f; 
+  --fg:#e6eef8; 
+  --muted:#9aa6b2; 
+  --accent:#79aaff;
+  --header-bg:rgba(11,11,15,0.95);
+  --border:rgba(255,255,255,0.1);
+  --card-bg:#151519;
+  --shadow:0 2px 8px rgba(0,0,0,0.3);
+  --shadow-hover:0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* ===== Base Mobile Styles ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:80px}
+html,body{height:100%;overflow-x:hidden}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,system-ui,-apple-system,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  line-height:1.6;
+  transition:background 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+/* ===== Mobile Container ===== */
+.container{
+  width:100%;
+  max-width:100%;
+  margin:0 auto;
+  padding:1rem;
+}
+
+/* ===== Better touch targets for mobile ===== */
+a, button{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ===== Mobile Header (Sticky) ===== */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid var(--border);
+  background:var(--header-bg);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:all 0.3s ease;
+}
+.site-header.scrolled{
+  box-shadow:var(--shadow);
+}
+.site-header .container{
+  display:flex;
+  gap:0.75rem;
+  align-items:center;
+  justify-content:space-between;
+  padding:0.75rem 1rem;
+  flex-wrap:wrap;
+  position:relative;
+}
+
+/* ===== Mobile Brand ===== */
+.brand{
+  margin:0;
+  font-size:1rem;
+  font-weight:700;
+  background:linear-gradient(135deg, var(--accent), #6366f1);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:fadeInDown 0.6s ease;
+  white-space:nowrap;
+  order:1;
+}
+
+/* ===== Mobile Menu Toggle Button ===== */
+#mobileMenuToggle{
+  display:flex;
+  order:3;
+  padding:0.5rem 0.65rem;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--card-bg);
+  cursor:pointer;
+  font-size:1.3rem;
+  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height:1;
+  flex-shrink:0;
+}
+#mobileMenuToggle:hover, #mobileMenuToggle:active{
+  background:rgba(43,140,255,0.1);
+  border-color:var(--accent);
+}
+#mobileMenuToggle.active{
+  background:rgba(43,140,255,0.15);
+  transform:rotate(90deg);
+}
+
+/* ===== Mobile Navigation - Dropdown Style ===== */
+.nav{
+  display:none;
+  list-style:none;
+  margin:0;
+  padding:0;
+  width:100%;
+  flex-direction:column;
+  gap:0;
+  order:4;
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  background:var(--header-bg);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  box-shadow:var(--shadow);
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+             opacity 0.3s ease,
+             box-shadow 0.3s ease;
+}
+.nav.mobile-active{
+  display:flex;
+  max-height:400px;
+  opacity:1;
+  padding:0.5rem 0;
+}
+.nav li{position:relative}
+.nav a{
+  color:var(--fg);
+  text-decoration:none;
+  font-weight:500;
+  padding:0.85rem 1.5rem;
+  border-radius:0;
+  display:block;
+  position:relative;
+  transition:all 0.2s ease;
+  text-align:left;
+  border-left:3px solid transparent;
+}
+.nav a::before{
+  display:none;
+}
+.nav a:hover, .nav a:active{
+  color:var(--accent);
+  background:rgba(43,140,255,0.08);
+  border-left-color:var(--accent);
+  padding-left:1.75rem;
+}
+.nav a.active{
+  color:var(--accent);
+  background:rgba(43,140,255,0.12);
+  border-left-color:var(--accent);
+}
+
+/* ===== Mobile Theme Toggle ===== */
+#themeToggle{
+  padding:0.5rem 0.65rem;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--card-bg);
+  cursor:pointer;
+  font-size:1.1rem;
+  transition:all 0.3s ease;
+  animation:fadeInDown 0.6s ease 0.2s backwards;
+  flex-shrink:0;
+  order:2;
+}
+#themeToggle:hover{
+  transform:scale(1.1) rotate(15deg);
+  box-shadow:var(--shadow);
+}
+#themeToggle:active{transform:scale(0.95)}
+
+/* ===== Mobile Hero Section ===== */
+.hero{
+  padding:2rem 0 1.5rem;
+  animation:fadeInUp 0.8s ease;
+}
+.hero-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:1.5rem;
+}
+.hero-image{
+  flex-shrink:0;
+  animation:fadeInUp 0.8s ease 0.1s backwards;
+}
+.profile-pic{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--accent);
+  box-shadow:var(--shadow-hover);
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.profile-pic:hover{
+  transform:scale(1.05) rotate(3deg);
+  box-shadow:0 12px 32px rgba(43,140,255,0.3);
+}
+.hero-text{
+  width:100%;
+}
+.hero h2{
+  margin:0.5rem 0;
+  font-size:1.75rem;
+  font-weight:700;
+  background:linear-gradient(135deg, var(--fg), var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:fadeInUp 0.8s ease 0.2s backwards;
+  line-height:1.2;
+}
+.hero p{
+  font-size:1rem;
+  animation:fadeInUp 0.8s ease 0.3s backwards;
+  margin:0.5rem 0;
+}
+.meta{
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+/* ===== Mobile Sections ===== */
+section{
+  margin:2rem 0;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeInUp 0.6s ease forwards;
+}
+section:nth-child(1){animation-delay:0.1s}
+section:nth-child(2){animation-delay:0.2s}
+section:nth-child(3){animation-delay:0.3s}
+section:nth-child(4){animation-delay:0.4s}
+
+section h3{
+  font-size:1.5rem;
+  margin-bottom:1rem;
+  position:relative;
+  display:inline-block;
+}
+section h3::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:50%;
+  height:3px;
+  background:var(--accent);
+  border-radius:2px;
+}
+
+section p{
+  font-size:1rem;
+  line-height:1.7;
+}
+
+/* ===== Mobile Skills List ===== */
+.skills-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  padding:0;
+  list-style:none;
+}
+.skills-list li{
+  background:var(--card-bg);
+  padding:0.5rem 0.85rem;
+  border-radius:8px;
+  border:1px solid var(--border);
+  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor:default;
+  font-size:0.9rem;
+}
+.skills-list li:hover, .skills-list li:active{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-hover);
+  border-color:var(--accent);
+  background:rgba(43,140,255,0.1);
+}
+
+/* ===== Mobile Projects Grid ===== */
+.projects-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.25rem;
+}
+.project{
+  padding:1.25rem;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card-bg);
+  box-shadow:var(--shadow);
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position:relative;
+  overflow:hidden;
+}
+.project::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--accent), #6366f1);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.4s ease;
+}
+.project:hover, .project:active{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow-hover);
+  border-color:var(--accent);
+}
+.project:hover::before{transform:scaleX(1)}
+.project h4{
+  font-size:1.15rem;
+  margin-bottom:0.65rem;
+  color:var(--fg);
+}
+.project p{
+  margin-bottom:0.5rem;
+  font-size:0.95rem;
+}
+.project a{
+  color:var(--accent);
+  text-decoration:none;
+  transition:all 0.2s ease;
+  font-weight:500;
+}
+.project a:hover{
+  text-decoration:underline;
+  color:#6366f1;
+}
+
+/* ===== Mobile Contact ===== */
+#contact a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:500;
+  transition:all 0.2s ease;
+  position:relative;
+  display:inline-block;
+}
+#contact a::after{
+  content:'→';
+  margin-left:0.25rem;
+  display:inline-block;
+  transition:transform 0.2s ease;
+}
+#contact a:hover, #contact a:active{color:#6366f1}
+#contact a:hover::after{transform:translateX(4px)}
+
+.muted{
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* ===== Mobile Footer ===== */
+.site-footer{
+  border-top:1px solid var(--border);
+  padding:1.5rem 0;
+  text-align:center;
+  font-size:0.9rem;
+  color:var(--muted);
+  margin-top:3rem;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeInDown{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== Scroll Reveal ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 0.6s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ========================================
+   TABLET BREAKPOINT (min-width: 600px)
+======================================== */
+@media (min-width:600px){
+  .container{
+    padding:1.5rem 2rem;
+  }
+  
+  .site-header .container{
+    padding:0.85rem 1.5rem;
+  }
+  
+  .brand{
+    font-size:1.1rem;
+  }
+  
+  .hero{
+    padding:2.5rem 0 2rem;
+  }
+  
+  .profile-pic{
+    width:160px;
+    height:160px;
+  }
+  
+  .hero h2{
+    font-size:2rem;
+  }
+  
+  .hero p{
+    font-size:1.05rem;
+  }
+  
+  section h3{
+    font-size:1.65rem;
+  }
+  
+  .skills-list{
+    gap:0.65rem;
+  }
+  
+  .skills-list li{
+    font-size:0.95rem;
+    padding:0.55rem 0.95rem;
+  }
+  
+  .projects-grid{
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.35rem;
+  }
+  
+  .project{
+    padding:1.35rem;
+  }
+}
+
+/* ========================================
+   DESKTOP BREAKPOINT (min-width: 768px)
+======================================== */
+@media (min-width:768px){
+  html{font-size:17px}
+  
+  .container{
+    max-width:1000px;
+    padding:2rem;
+  }
+  
+  .site-header .container{
+    padding:1rem 2rem;
+    gap:1.5rem;
+    flex-wrap:nowrap;
+  }
+  
+  .brand{
+    font-size:1.2rem;
+    order:unset;
+  }
+  
+  /* Show horizontal nav on desktop */
+  .nav{
+    display:flex;
+    flex-direction:row;
+    width:auto;
+    gap:0.25rem;
+    order:unset;
+    position:static;
+    max-height:none;
+    opacity:1;
+    border:none;
+    box-shadow:none;
+    background:transparent;
+    padding:0;
+  }
+  
+  .nav a{
+    padding:0.5rem 1rem;
+    text-align:left;
+    border-radius:6px;
+    border-left:none;
+  }
+  
+  .nav a::before{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:50%;
+    width:0;
+    height:2px;
+    background:var(--accent);
+    transform:translateX(-50%);
+    transition:width 0.3s ease;
+    display:block;
+  }
+  
+  .nav a:hover, .nav a:active{
+    padding-left:1rem;
+    background:rgba(43,140,255,0.1);
+    border-left:none;
+  }
+  
+  .nav a:hover::before{width:60%}
+  
+  /* Hide mobile menu toggle on desktop */
+  #mobileMenuToggle{
+    display:none !important;
+  }
+  
+  #themeToggle{
+    margin-left:auto;
+    font-size:1.2rem;
+    order:unset;
+  }
+  
+  /* Desktop Hero - Side by side layout */
+  .hero{
+    padding:3.5rem 0 3rem;
+  }
+  
+  .hero-content{
+    flex-direction:row;
+    text-align:left;
+    gap:2.5rem;
+    align-items:center;
+  }
+  
+  .hero-text{
+    flex:1;
+  }
+  
+  .profile-pic{
+    width:180px;
+    height:180px;
+    border:4px solid var(--accent);
+  }
+  
+  .hero h2{
+    font-size:2.5rem;
+  }
+  
+  .hero p{
+    font-size:1.15rem;
+  }
+  
+  section{
+    margin:3rem 0;
+  }
+  
+  section h3{
+    font-size:1.8rem;
+    margin-bottom:1.25rem;
+  }
+  
+  .skills-list{
+    gap:0.75rem;
+  }
+  
+  .skills-list li{
+    padding:0.6rem 1rem;
+    font-size:1rem;
+  }
+  
+  .projects-grid{
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+  }
+  
+  .project{
+    padding:1.5rem;
+  }
+  
+  .project:hover{
+    transform:translateY(-8px);
+  }
+  
+  .project h4{
+    font-size:1.25rem;
+  }
+  
+  .project p{
+    font-size:1rem;
+  }
+  
+  .site-footer{
+    padding:2rem 0;
+    margin-top:4rem;
+  }
+}
+
+/* ========================================
+   LARGE DESKTOP (min-width: 1200px)
+======================================== */
+@media (min-width:1200px){
+  .container{
+    max-width:1100px;
+  }
+  
+  .hero{
+    padding:4rem 0 3rem;
+  }
+  
+  .hero-content{
+    gap:3rem;
+  }
+  
+  .profile-pic{
+    width:200px;
+    height:200px;
+  }
+  
+  .hero h2{
+    font-size:2.75rem;
+  }
+  
+  .projects-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:2rem;
+  }
+}

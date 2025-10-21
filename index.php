@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Mashud Shamsher Khalid - IT Student, Web Developer & Aspiring Game Developer. Building LakBayan Warrior and learning game development with Godot.">
+  <title>Mashud Khalid — IT Student & Game Dev</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Mashud Khalid</h1>
+      <button id="mobileMenuToggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hero" class="hero">
+      <div class="hero-content">
+        <div class="hero-image">
+          <img src="images/pic.png" alt="Profile Picture" class="profile-pic">
+        </div>
+        <div class="hero-text">
+          <h2>Hi, I'm Mashud!</h2>
+          <p>🎓 IT Student | Web Developer | Aspiring Game Dev</p>
+          <p class="meta">💻 I study Web Development and am currently diving into Game Development with Godot.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h3>About Me</h3>
+      <p>I'm <strong>Mashud Shamsher C. Khalid</strong>, a passionate IT student specializing in <strong>Web Development</strong> and <strong>Game Development</strong>. I'm currently building <strong>LakBayan Warrior</strong>, an indie pixel game inspired by Filipino culture, using Godot Engine while also developing full-stack web applications with HTML, CSS, JavaScript, PHP, and MySQL. I embrace continuous learning and believe that every challenge is an opportunity to grow as a developer.</p>
+    </section>
+
+    <section id="skills">
+      <h3>Skills</h3>
+      <ul class="skills-list">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>PHP</li>
+        <li>C++</li>
+        <li>MySQL</li>
+        <li>Godot Engine</li>
+        <li>XAMPP</li>
+        <li>UI/UX Design</li>
+        <li>Git & GitHub</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h3>Projects</h3>
+      <div class="projects-grid">
+        <article class="project">
+          <h4>LakBayan Warrior</h4>
+          <p>🎯 A story-driven indie pixel game inspired by Filipino life and culture. Built with Godot Engine.</p>
+          <p>💻 <strong>Tech:</strong> Godot, GDScript, Pixel Art, Game Design</p>
+          <p class="muted">Status: In Development 🚧</p>
+        </article>
+        <article class="project">
+          <h4>Web Development Projects</h4>
+          <p>💼 Various web applications using HTML, CSS, JavaScript, PHP, and MySQL.</p>
+          <p>🔧 <strong>Tech:</strong> Full-stack development, XAMPP, Responsive Design</p>
+          <p class="muted">GitHub: <a href="https://github.com/mashudSCK" target="_blank" rel="noopener">@mashudSCK</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h3>Contact</h3>
+      <p>📧 <strong>Email:</strong> <a href="mailto:mashudkhalid.work@gmail.com">mashudkhalid.work@gmail.com</a></p>
+      <p>💼 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mashud-khalid" target="_blank" rel="noopener">Mashud Khalid</a></p>
+      <p>📘 <strong>Facebook:</strong> <a href="https://facebook.com/mashud.nvm" target="_blank" rel="noopener">Mashud Khalid</a></p>
+      <p>💻 <strong>GitHub:</strong> <a href="https://github.com/mashudSCK" target="_blank" rel="noopener">@mashudSCK</a></p>
+      <p style="margin-top: 1.5rem; font-style: italic; color: var(--muted);">⭐ Thanks for visiting! Feel free to check out my repositories or say hi!</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Mashud Shamsher Khalid — IT Student & Aspiring Game Developer</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
