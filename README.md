@@ -8,7 +8,6 @@ A modern, responsive portfolio website showcasing my projects and skills.
 - HTML5
 - CSS3
 - JavaScript
-- PHP
 
 ## Setup
 1. Clone this repository
